@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+	<!-- add features here -->
+	<feature url="features/org.palladiosimulator.examples.package.feature.4.2.0.qualifier.jar" id="org.palladiosimulator.examples.package.feature" version="4.2.0.qualifier">
+	   <category name="org.palladiosimulator.corefeatures.category"/>
+	</feature>
+	<feature url="features/org.palladiosimulator.examples.package.feature.source_4.2.0.qualifier.jar" id="org.palladiosimulator.examples.package.feature" version="4.2.0.qualifier">
+	   <category name="org.palladiosimulator.corefeatures.source.category"/>
+	</feature>
+	
+	<!-- category definitions -->
+	<category-def name="org.palladiosimulator.corefeatures.category" label="Palladio Bench Core Features">
+		<description>
+	      This category contains all features which belong to a complete installation of the Palladio Bench Core Features
+		</description>
+	</category-def>
+	<category-def name="org.palladiosimulator.corefeatures.source.category" label="Palladio Bench Core Features Source">
+		<description>
+	        Palladio Bench Core Features Sources
+		</description>
+	</category-def>
+	
+</site>
