@@ -3,7 +3,7 @@ import org.apache.commons.io.FileUtils
 
 /*
 // set by the maven build
-def examples_source = "initiatorTemplates"
+def examples_source = "target/examples"
 def examples_target = "initiatorTemplates"
 def catalogue_target = "Examples.architecturaltemplates"
 */
