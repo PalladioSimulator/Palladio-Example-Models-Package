@@ -5,7 +5,7 @@
       version="4.2.0.qualifier"
       provider-name="palladiosimulator.org"
       plugin="org.palladiosimulator.branding"
-      license-feature="org.palladiosimulator.license"
+      license-feature="org.palladiosimulator.license.epl2"
       license-feature-version="1.0.0">
 
    <description>
