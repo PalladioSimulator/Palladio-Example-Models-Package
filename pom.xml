@@ -20,63 +20,29 @@
 	<modules>
 		<module>bundles</module>
 		<module>features</module>
-		<module>tests</module>
 		<module>releng</module>
-	</modules>
+	</modules>	
 	
 	<build>
-        <plugins>
-            <plugin>
-                <groupId>org.codehaus.gmavenplus</groupId>
-                <artifactId>gmavenplus-plugin</artifactId>
-                <version>1.8.0</version>
-                <executions>
-                    <execution>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>compile</goal>
-                            <goal>execute</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <sources>
-                        <source>
-                            <directory>${project.basedir}/src/</directory>
-                            <includes>
-                                <include>**/*.groovy</include>
-                            </includes>
-                        </source>
-                    </sources>
-                    <scripts>
-                        <script>file:///${project.basedir}/cloneAndCatalogExamples.groovy</script>
-                    </scripts>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.codehaus.groovy</groupId>
-                        <artifactId>groovy-all</artifactId>
-                        <version>2.5.8</version>
-                        <type>pom</type>
-                        <scope>runtime</scope>
-                    </dependency>
-                </dependencies>
-            </plugin>
-        </plugins>
-    </build>
-    <dependencies>
-        <dependency>
-            <groupId>org.palladiosimulator</groupId>
-            <artifactId>tycho-tp-refresh-maven-plugin</artifactId>
-            <version>0.2.4</version>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
-            <version>2.5.8</version>
-            <type>pom</type>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
-	
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-source-plugin</artifactId>
+					<version>${tycho.version}</version>
+					<configuration>
+						<skip>true</skip>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.tycho.extras</groupId>
+					<artifactId>tycho-source-feature-plugin</artifactId>
+					<version>${tycho.version}</version>
+					<configuration>
+						<skip>true</skip>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 </project>

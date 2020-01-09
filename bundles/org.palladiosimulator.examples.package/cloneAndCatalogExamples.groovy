@@ -1,13 +1,9 @@
 import groovy.util.XmlSlurper
 
-def examples_source = "git@github.com:PalladioSimulator/Palladio-Example-Models.git"
-def examples_target = "bundles/org.palladiosimulator.examples.package/initiatorTemplates"
-def catalogue_target = "bundles/org.palladiosimulator.examples.package/Examples.architecturaltemplates"
-
-println "Cloning projects from ${examples_source} to ${examples_target}"
-gitClone = ["git", "clone", examples_source, examples_target].execute()
-gitClone.waitFor()
-
+/*
+	def examples_target = "initiatorTemplates"
+	def catalogue_target = "Examples.architecturaltemplates"
+*/
 
 projects = []
 new File(examples_target).eachFileRecurse {

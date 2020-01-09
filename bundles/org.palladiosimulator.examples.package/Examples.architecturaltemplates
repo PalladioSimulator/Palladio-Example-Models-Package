@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.palladiosimulator.architecturaltemplates:Catalog xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.palladiosimulator.architecturaltemplates="http://palladiosimulator.org/ArchitecturalTemplates/1.0" id="GeneratedATCatalog" entityName="Generated AT Catalog">
+	<ATs id="AcquireExample.ID" entityName="AcquireExample" documentation="" defaultInstanceURI="Acquire_Example/"/>
+	<ATs id="ConnectedHeating.ID" entityName="ConnectedHeating" documentation="" defaultInstanceURI="ConnectedHeating_Example/"/>
+	<ATs id="HDD Demo.ID" entityName="HDD Demo" documentation="" defaultInstanceURI="HDDExample/HDDDemoUsingInfrastructureCalls/"/>
+	<ATs id="HDD Patch Demo.ID" entityName="HDD Patch Demo" documentation="" defaultInstanceURI="HDDExample/HDDDemoUsingResourceSignatures/"/>
+	<ATs id="HardDiskModel.ID" entityName="HardDiskModel" documentation="" defaultInstanceURI="HardDiskModel_Example/"/>
+	<ATs id="InfrastructureComponent_Example.ID" entityName="InfrastructureComponent_Example" documentation="" defaultInstanceURI="InfrastructureComponent_Example/"/>
+	<ATs id="LinkingResourceTest.ID" entityName="LinkingResourceTest" documentation="" defaultInstanceURI="LinkingResource_Test/"/>
+	<ATs id="MinimumEventExample.ID" entityName="MinimumEventExample" documentation="" defaultInstanceURI="MinimumEvent_Example/"/>
+	<ATs id="Network Demo.ID" entityName="Network Demo" documentation="" defaultInstanceURI="MinimumNetworkExample/Network Demo/"/>
+	<ATs id="Minimum_Project.ID" entityName="Minimum_Project" documentation="" defaultInstanceURI="Minimum_Project_Example/"/>
+	<ATs id="PCMForkExample.ID" entityName="PCMForkExample" documentation="" defaultInstanceURI="PCMFork_Example/"/>
+	<ATs id="PCMSetVariableExample.ID" entityName="PCMSetVariableExample" documentation="" defaultInstanceURI="PCMSetVariable_Example/"/>
+	<ATs id="ReliabilityTest.ID" entityName="ReliabilityTest" documentation="" defaultInstanceURI="ReliabilityTest/"/>
+	<ATs id="ReplicatedCompositeComponentExample.ID" entityName="ReplicatedCompositeComponentExample" documentation="" defaultInstanceURI="ReplicatedCompositeComponent_Example/"/>
+	<ATs id="ScreencastMediaStore.ID" entityName="ScreencastMediaStore" documentation="" defaultInstanceURI="ScreencastMediaStore/"/>
+	<ATs id="Simple Tactics Example.ID" entityName="Simple Tactics Example" documentation="" defaultInstanceURI="SimpleHeuristicsExample_Example/"/>
+	<ATs id="Simple Optimisation Example.ID" entityName="Simple Optimisation Example" documentation="" defaultInstanceURI="SimpleOptimisation_Example/"/>
+	<ATs id="SubsystemTest.ID" entityName="SubsystemTest" documentation="" defaultInstanceURI="Subsystem_Test/"/>
+</org.palladiosimulator.architecturaltemplates:Catalog>
