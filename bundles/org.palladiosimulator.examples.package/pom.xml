@@ -92,8 +92,15 @@
 				<configuration>
 				  <filesets>
 					<fileset>
-					  <directory>initiatorTemplates</directory>
-					  <followSymlinks>false</followSymlinks>
+						<directory>initiatorTemplates</directory>
+						<followSymlinks>false</followSymlinks>
+					</fileset>
+					<fileset>
+						<directory>.</directory>
+						<includes>
+							<include>Examples.architecturaltemplates</include>
+						</includes>
+						<followSymlinks>false</followSymlinks>
 					</fileset>
 				  </filesets>
 				</configuration>
