@@ -1,4 +1,5 @@
 import groovy.util.XmlSlurper
+import org.apache.commons.io.FileUtils
 
 /*
 // set by the maven build
@@ -7,10 +8,21 @@ def examples_target = "initiatorTemplates"
 def catalogue_target = "Examples.architecturaltemplates"
 */
 
+
+def deleteIfExists(String path) {
+	file = new File(path)
+	if (file.exists()) {
+		println " -- Removing ${file.isDirectory() ? "directory" : "file"} ${file.name} (${file.path})"
+		FileUtils.forceDelete(file)
+	} else {
+		println " -- ${path} not found, not removing"
+	}
+}
+
 // create target directory if it does not exist
-def examples_target_filehandle = new File(examples_target)
-if (!examples_target_filehandle.exists()) {
-	examples_target_filehandle.mkdirs()
+def examples_target_folder = new File(examples_target)
+if (!examples_target_folder.exists()) {
+	examples_target_folder.mkdirs()
 }
 
 
@@ -24,42 +36,32 @@ new File(examples_source).eachFileRecurse {
 		println " - ${parent_folder.name}"
 		target_folder = "${examples_target}/${parent_folder.name}"
 		
-		command = ["cp", "-r", parent_folder.path, target_folder]
-		println " -- Copying: " + command.join(" ")
-		command.execute().waitFor()
+		println " -- Copying ${parent_folder.path} into ${examples_target_folder.path}"
+		FileUtils.copyDirectoryToDirectory(parent_folder, examples_target_folder)
 		
-		projectXml = new XmlSlurper().parse(new File("${target_folder}/.project"))
+		projectFile = new File("${target_folder}/.project")
+		projectXml = new XmlSlurper().parse(projectFile)
 		entityName = "${projectXml.name}"
 		println " -- Discovered project name: ${entityName}"
 		
 		documentationFile = new File("${target_folder}/.documentation")
 		if (documentationFile.exists()) {
 			documentation = documentationFile.text
-			println " -- Documentation found"
+			println " -- Documentation found (${documentationFile.path})"
 		} else {
 			documentation = ""
 			println " -- No documentation found"
 		}
 		
-		settingsFolder = new File("${target_folder}/.settings")
-		if (settingsFolder.exists()) {
-			command = ["rm" ,"-r", settingsFolder.path]
-			println " -- Removing .settings: " + command.join(" ")
-			command.execute().waitFor()
-		}
-	
-		command = ["rm", "${target_folder}/.project"]
-		println " -- Removing .project file: " + command.join(" ")
-		command.execute().waitFor()
-		
-		command = ["rm", "${target_folder}/.documentation"]
-		println " -- Removing .documentation file: " + command.join(" ")
-		command.execute().waitFor()
-		
+		deleteIfExists(documentationFile.path)
+		deleteIfExists("${target_folder}/.settings")
+		deleteIfExists("${target_folder}/.classpath")
+		deleteIfExists(projectFile.path)
+				
 		projects.add([
 			entityName: entityName,
 			documentation: documentation,
-			defaultInstanceURI: entityName
+			defaultInstanceURI: parent_folder.name
 		])
 	}
 }
