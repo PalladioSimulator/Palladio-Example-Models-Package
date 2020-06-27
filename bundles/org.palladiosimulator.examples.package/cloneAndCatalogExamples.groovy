@@ -8,7 +8,6 @@ def examples_target = "initiatorTemplates"
 def catalogue_target = "Examples.architecturaltemplates"
 */
 
-
 def deleteIfExists(String path) {
 	file = new File(path)
 	if (file.exists()) {
@@ -25,45 +24,49 @@ if (!examples_target_folder.exists()) {
 	examples_target_folder.mkdirs()
 }
 
-
 // discover all folders that contain a .project file
 println "Starting example project discovery:"
+
 projects = []
-new File(examples_source).eachFileRecurse {
-	if (it.name == ".project") {
-		parent_folder = new File(it.parent)
-		
-		println " - ${parent_folder.name}"
-		target_folder = "${examples_target}/${parent_folder.name}"
-		
-		println " -- Copying ${parent_folder.path} into ${examples_target_folder.path}"
-		FileUtils.copyDirectoryToDirectory(parent_folder, examples_target_folder)
-		
-		projectFile = new File("${target_folder}/.project")
-		projectXml = new XmlSlurper().parse(projectFile)
-		entityName = "${projectXml.name}"
-		println " -- Discovered project name: ${entityName}"
-		
-		documentationFile = new File("${target_folder}/.documentation")
-		if (documentationFile.exists()) {
-			documentation = documentationFile.text
-			println " -- Documentation found (${documentationFile.path})"
-		} else {
-			documentation = ""
-			println " -- No documentation found"
-		}
-		
-		deleteIfExists(documentationFile.path)
-		deleteIfExists("${target_folder}/.settings")
-		deleteIfExists("${target_folder}/.classpath")
-		deleteIfExists(projectFile.path)
-				
-		projects.add([
-			entityName: entityName,
-			documentation: documentation,
-			defaultInstanceURI: parent_folder.name
-		])
-	}
+
+examples_sources.split("\\s+").each { examples_source ->
+    println "Source: ${examples_source}"
+    new File(examples_source).eachFileRecurse {
+    	if (it.name == ".project") {
+    		parent_folder = new File(it.parent)
+    		
+    		println " - ${parent_folder.name}"
+    		target_folder = "${examples_target}/${parent_folder.name}"
+    		
+    		println " -- Copying ${parent_folder.path} into ${examples_target_folder.path}"
+    		FileUtils.copyDirectoryToDirectory(parent_folder, examples_target_folder)
+    		
+    		projectFile = new File("${target_folder}/.project")
+    		projectXml = new XmlSlurper().parse(projectFile)
+    		entityName = "${projectXml.name}"
+    		println " -- Discovered project name: ${entityName}"
+    		
+    		documentationFile = new File("${target_folder}/.documentation")
+    		if (documentationFile.exists()) {
+    			documentation = documentationFile.text
+    			println " -- Documentation found (${documentationFile.path})"
+    		} else {
+    			documentation = ""
+    			println " -- No documentation found"
+    		}
+    		
+    		deleteIfExists(documentationFile.path)
+    		deleteIfExists("${target_folder}/.settings")
+    		deleteIfExists("${target_folder}/.classpath")
+    		deleteIfExists(projectFile.path)
+    				
+    		projects.add([
+    			entityName: entityName,
+    			documentation: documentation,
+    			defaultInstanceURI: parent_folder.name
+    		])
+    	}
+    }
 }
 
 projects.sort { a, b -> a.entityName <=> b.entityName }
