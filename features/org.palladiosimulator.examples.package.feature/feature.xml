@@ -8,8 +8,7 @@
       license-feature="org.palladiosimulator.license.epl2"
       license-feature-version="1.0.0">
 
-   <description>
-   </description>
+   <description>This feature provides various initiator templates for new Palladio projects based on existing examples.</description>
 
    <requires>
       <import plugin="org.palladiosimulator.architecturaltemplates"/>
