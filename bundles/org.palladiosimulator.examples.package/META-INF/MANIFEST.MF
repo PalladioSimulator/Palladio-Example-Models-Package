@@ -4,6 +4,6 @@ Bundle-Name: Examples - New Project Catalog
 Bundle-SymbolicName: org.palladiosimulator.examples.package;singleton:=true
 Bundle-Version: 4.3.0.qualifier
 Bundle-Vendor: palladiosimulator.org
-Require-Bundle: org.palladiosimulator.architecturaltemplates
+Require-Bundle: org.palladiosimulator.architecturaltemplates;resolution:=optional
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Bundle-ActivationPolicy: lazy
