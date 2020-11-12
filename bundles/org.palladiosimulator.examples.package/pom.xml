@@ -15,7 +15,7 @@
 	<packaging>eclipse-plugin</packaging>
 
 	<build>
-        <plugins>
+		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-scm-plugin</artifactId>
@@ -97,63 +97,63 @@
 					</execution>
 				</executions>
 			</plugin>
-            <plugin>
-                <groupId>org.codehaus.gmavenplus</groupId>
-                <artifactId>gmavenplus-plugin</artifactId>
-                <version>1.9.0</version>
-                <executions>
-                    <execution>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>compile</goal>
-                            <goal>execute</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <sources>
-                        <source>
-                            <directory>${project.basedir}/src/</directory>
-                            <includes>
-                                <include>**/*.groovy</include>
-                            </includes>
-                        </source>
-                    </sources>
+			<plugin>
+				<groupId>org.codehaus.gmavenplus</groupId>
+				<artifactId>gmavenplus-plugin</artifactId>
+				<version>1.9.0</version>
+				<executions>
+					<execution>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>compile</goal>
+							<goal>execute</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<sources>
+						<source>
+							<directory>${project.basedir}/src/</directory>
+							<includes>
+								<include>**/*.groovy</include>
+							</includes>
+						</source>
+					</sources>
 					<properties>
 						<property>
 							<name>examples_sources</name>
-                            <value>
-                            	${project.basedir}/target/examples/SVN-CaseStudies-MediaStore3
-                            	${project.basedir}/target/examples/SVN-SimuLizar-Examples
-                            	${project.basedir}/target/examples/Palladio-Example-Models-master
-                            	${project.basedir}/target/examples/Palladio-Analyzer-SimuLizar-master/bundles/ExampleModels
-                            	${project.basedir}/target/examples/Palladio-Addon-ArchitecturalTemplates-master/bundles/org.palladiosimulator.architecturaltemplates.catalog/initiatorTemplates
-                            	${project.basedir}/target/examples/Palladio-Addon-ArchitecturalTemplates-master/misc
-                            </value>
-                        </property>
-                        <property>
-                            <name>examples_target</name>
-                            <value>${project.basedir}/initiatorTemplates</value>
-                        </property>
-                        <property>
-                            <name>catalogue_target</name>
-                            <value>${project.basedir}/Examples.architecturaltemplates</value>
-                        </property>
-                    </properties>
-                    <scripts>
-                        <script>file:///${project.basedir}/cloneAndCatalogExamples.groovy</script>
-                    </scripts>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.codehaus.groovy</groupId>
-                        <artifactId>groovy-all</artifactId>
-                        <version>2.5.8</version>
-                        <type>pom</type>
-                        <scope>runtime</scope>
-                    </dependency>
-                </dependencies>
-            </plugin>
+							<value>
+								${project.basedir}/target/examples/SVN-CaseStudies-MediaStore3
+								${project.basedir}/target/examples/SVN-SimuLizar-Examples
+								${project.basedir}/target/examples/Palladio-Example-Models-master
+								${project.basedir}/target/examples/Palladio-Analyzer-SimuLizar-master/bundles/ExampleModels
+								${project.basedir}/target/examples/Palladio-Addon-ArchitecturalTemplates-master/bundles/org.palladiosimulator.architecturaltemplates.catalog/initiatorTemplates
+								${project.basedir}/target/examples/Palladio-Addon-ArchitecturalTemplates-master/misc
+							</value>
+						</property>
+						<property>
+							<name>examples_target</name>
+							<value>${project.basedir}/initiatorTemplates</value>
+						</property>
+						<property>
+							<name>catalogue_target</name>
+							<value>${project.basedir}/Examples.architecturaltemplates</value>
+						</property>
+					</properties>
+					<scripts>
+						<script>file:///${project.basedir}/cloneAndCatalogExamples.groovy</script>
+					</scripts>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.codehaus.groovy</groupId>
+						<artifactId>groovy-all</artifactId>
+						<version>2.5.8</version>
+						<type>pom</type>
+						<scope>runtime</scope>
+					</dependency>
+				</dependencies>
+			</plugin>
 			<plugin>
 			<artifactId>maven-clean-plugin</artifactId>
 			<version>3.1.0</version>
@@ -173,22 +173,22 @@
 				  </filesets>
 				</configuration>
 			</plugin>
-        </plugins>
-    </build>
+		</plugins>
+	</build>
 
 	
 	<dependencies>
-        <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
-            <version>2.5.8</version>
-            <type>pom</type>
-            <scope>compile</scope>
-        </dependency>
+		<dependency>
+			<groupId>org.codehaus.groovy</groupId>
+			<artifactId>groovy-all</artifactId>
+			<version>2.5.8</version>
+			<type>pom</type>
+			<scope>compile</scope>
+		</dependency>
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>2.6</version>
 		</dependency>
-    </dependencies>
+	</dependencies>
 </project>
