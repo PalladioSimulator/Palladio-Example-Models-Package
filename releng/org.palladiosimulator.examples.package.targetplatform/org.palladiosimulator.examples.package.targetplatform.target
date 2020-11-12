@@ -271,5 +271,13 @@
 						<unit id="org.palladiosimulator.experimentanalysis.tests.feature.feature.group" version="tbd"/>
 			<repository location="https://sdqweb.ipd.kit.edu/eclipse/palladio/addons/experimentanalysis/nightly/"/>
 		</location>
+		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit" filter="nightly" refresh="true">
+			<unit id="com.google.auto.factory-annotations.feature.feature.group" version="1.0.0"/>
+			<repository location="https://updatesite.mdsd.tools/thirdparty-library/nightly"/>
+		</location>
+		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit" filter="release" refresh="true">
+			<unit id="com.google.auto.factory-annotations.feature.feature.group" version="1.0.0"/>
+			<repository location="https://updatesite.mdsd.tools/thirdparty-library/releases/latest/"/>
+		</location>
 </locations>
 </target>

@@ -15,76 +15,137 @@
 	<packaging>eclipse-plugin</packaging>
 
 	<build>
-        <plugins>
+		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-scm-plugin</artifactId>
-				<version>1.9.5</version>
+				<version>1.11.2</version>
 				<executions>
 					<execution>
-						<id>default-resources</id>
+						<id>download-svn-case-studies</id>
 						<phase>generate-resources</phase>
 						<goals>
-							<goal>checkout</goal>
+							<goal>export</goal>
+						</goals>
+						<configuration>
+							<exportDirectory>${project.basedir}/target/examples/SVN-CaseStudies-MediaStore3</exportDirectory>
+							<connectionUrl>scm:svn:https://svnserver.informatik.kit.edu/i43/svn/code/CaseStudies/MediaStore3/trunk/Model</connectionUrl>
+						</configuration>
+					</execution>
+				</executions>
+				
+				<configuration>
+					<username>anonymous</username> 
+					<password>anonymous</password> 
+					<connectionType>connection</connectionType> 
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.googlecode.maven-download-plugin</groupId>
+				<artifactId>download-maven-plugin</artifactId>
+				<version>1.6.0</version>
+				<executions>
+					<execution>
+						<id>download-palladio-example-models</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>wget</goal>
+						</goals>
+						<configuration>
+							<url>https://github.com/PalladioSimulator/Palladio-Example-Models/archive/master.zip</url>
+							<unpack>true</unpack>
+							<skipCache>true</skipCache>
+							<outputDirectory>${project.build.directory}/examples/</outputDirectory>
+						</configuration>
+					</execution>
+					<execution>
+						<id>download-simulizar-example-models</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>wget</goal>
+						</goals>
+						<configuration>
+							<url>https://github.com/PalladioSimulator/Palladio-Analyzer-SimuLizar/archive/master.zip</url>
+							<unpack>true</unpack>
+							<skipCache>true</skipCache>
+							<outputDirectory>${project.build.directory}/examples/</outputDirectory>
+						</configuration>
+					</execution>
+					<execution>
+						<id>download-architectural-templates-catalog</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>wget</goal>
+						</goals>
+						<configuration>
+							<url>https://github.com/PalladioSimulator/Palladio-Addon-ArchitecturalTemplates/archive/master.zip</url>
+							<unpack>true</unpack>
+							<skipCache>true</skipCache>
+							<outputDirectory>${project.build.directory}/examples/</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.gmavenplus</groupId>
+				<artifactId>gmavenplus-plugin</artifactId>
+				<version>1.9.0</version>
+				<executions>
+					<execution>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>compile</goal>
+							<goal>execute</goal>
 						</goals>
 					</execution>
 				</executions>
-				<configuration> 
-					<checkoutDirectory>${project.basedir}/target/examples</checkoutDirectory>
-					<connectionType>connection</connectionType> 
-					<connectionUrl>scm:git:https://github.com/PalladioSimulator/Palladio-Example-Models.git</connectionUrl>
-				</configuration> 
-			</plugin>
-            <plugin>
-                <groupId>org.codehaus.gmavenplus</groupId>
-                <artifactId>gmavenplus-plugin</artifactId>
-                <version>1.8.0</version>
-                <executions>
-                    <execution>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>compile</goal>
-                            <goal>execute</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <sources>
-                        <source>
-                            <directory>${project.basedir}/src/</directory>
-                            <includes>
-                                <include>**/*.groovy</include>
-                            </includes>
-                        </source>
-                    </sources>
+				<configuration>
+					<sources>
+						<source>
+							<directory>${project.basedir}/src/</directory>
+							<includes>
+								<include>**/*.groovy</include>
+							</includes>
+						</source>
+					</sources>
 					<properties>
+						<!--
+							We could also add
+								org.palladiosimulator.architecturaltemplates.catalog::${project.basedir}/target/examples/Palladio-Addon-ArchitecturalTemplates-master/bundles/org.palladiosimulator.architecturaltemplates.catalog/initiatorTemplates
+							but the templates there do not contain .project files.
+						-->
 						<property>
-							<name>examples_source</name>
-                            <value>${project.basedir}/target/examples</value>
-                        </property>
-                        <property>
-                            <name>examples_target</name>
-                            <value>${project.basedir}/initiatorTemplates</value>
-                        </property>
-                        <property>
-                            <name>catalogue_target</name>
-                            <value>${project.basedir}/Examples.architecturaltemplates</value>
-                        </property>
-                    </properties>
-                    <scripts>
-                        <script>file:///${project.basedir}/cloneAndCatalogExamples.groovy</script>
-                    </scripts>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.codehaus.groovy</groupId>
-                        <artifactId>groovy-all</artifactId>
-                        <version>2.5.8</version>
-                        <type>pom</type>
-                        <scope>runtime</scope>
-                    </dependency>
-                </dependencies>
-            </plugin>
+							<name>examples_sources</name>
+							<value>
+								MediaStore3::${project.basedir}/target/examples/SVN-CaseStudies-MediaStore3
+								Palladio-Example-Models::${project.basedir}/target/examples/Palladio-Example-Models-master
+								Palladio-Analyzer-SimuLizar::${project.basedir}/target/examples/Palladio-Analyzer-SimuLizar-master/bundles/ExampleModels
+								Palladio-Addon-ArchitecturalTemplates::${project.basedir}/target/examples/Palladio-Addon-ArchitecturalTemplates-master/misc
+							</value>
+						</property>
+						<property>
+							<name>examples_target</name>
+							<value>${project.basedir}/initiatorTemplates</value>
+						</property>
+						<property>
+							<name>catalog_target</name>
+							<value>${project.basedir}/</value>
+						</property>
+					</properties>
+					<scripts>
+						<script>file:///${project.basedir}/cloneAndCatalogExamples.groovy</script>
+					</scripts>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.codehaus.groovy</groupId>
+						<artifactId>groovy-all</artifactId>
+						<version>2.5.8</version>
+						<type>pom</type>
+						<scope>runtime</scope>
+					</dependency>
+				</dependencies>
+			</plugin>
 			<plugin>
 			<artifactId>maven-clean-plugin</artifactId>
 			<version>3.1.0</version>
@@ -104,22 +165,22 @@
 				  </filesets>
 				</configuration>
 			</plugin>
-        </plugins>
-    </build>
+		</plugins>
+	</build>
 
 	
 	<dependencies>
-        <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
-            <version>2.5.8</version>
-            <type>pom</type>
-            <scope>compile</scope>
-        </dependency>
+		<dependency>
+			<groupId>org.codehaus.groovy</groupId>
+			<artifactId>groovy-all</artifactId>
+			<version>2.5.8</version>
+			<type>pom</type>
+			<scope>compile</scope>
+		</dependency>
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>2.6</version>
 		</dependency>
-    </dependencies>
+	</dependencies>
 </project>
