@@ -27,9 +27,13 @@ if (!examples_target_folder.exists()) {
 // discover all folders that contain a .project file
 println "Starting example project discovery:"
 
-projects = []
+catalog_to_projects = [:]
 
-examples_sources.split("\\s+").each { examples_source ->
+examples_sources.split("\\s+").each { catalog_and_examples_source ->
+	(example_catalog, examples_source) = catalog_and_examples_source.split("::")
+
+	catalog_to_projects.putIfAbsent(example_catalog, [])
+
     println "Source: ${examples_source}"
     new File(examples_source).eachFileRecurse {
     	if (it.name == ".project") {
@@ -60,7 +64,7 @@ examples_sources.split("\\s+").each { examples_source ->
     		deleteIfExists("${target_folder}/.classpath")
     		deleteIfExists(projectFile.path)
     				
-    		projects.add([
+    		catalog_to_projects[example_catalog].add([
     			entityName: entityName,
     			documentation: documentation,
     			defaultInstanceURI: parent_folder.name
@@ -69,17 +73,53 @@ examples_sources.split("\\s+").each { examples_source ->
     }
 }
 
-projects.sort { a, b -> a.entityName <=> b.entityName }
+pluginXmlEntries = []
 
-result = """<?xml version="1.0" encoding="UTF-8"?>
-<org.palladiosimulator.architecturaltemplates:Catalog xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.palladiosimulator.architecturaltemplates="http://palladiosimulator.org/ArchitecturalTemplates/1.0" id="GeneratedATCatalog" entityName="Generated AT Catalog">\n"""
+// build all architectural-template catalogs
+catalog_to_projects.each{entry ->
+	catalog = entry.key
+	projects = entry.value
 
-projects.each {
-	result += """\t<ATs id="${it.entityName}.ID" entityName="${it.entityName}" documentation="${it.documentation}" defaultInstanceURI="${it.defaultInstanceURI}/"/>\n"""
+	// could be changed to replace "-" with " " or to allow better
+	// naming of catalogs
+	catalogName = catalog
+
+	projects.sort { a, b -> a.entityName <=> b.entityName }
+
+	result = """<?xml version="1.0" encoding="UTF-8"?>
+	<org.palladiosimulator.architecturaltemplates:Catalog
+		xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:org.palladiosimulator.architecturaltemplates="http://palladiosimulator.org/ArchitecturalTemplates/1.0"
+		id="${catalog}.ID"
+		entityName="${catalog}">\n"""
+
+	projects.each {
+		result += """\t<ATs id="${it.entityName}.ID" entityName="${it.entityName}" documentation="${it.documentation}" defaultInstanceURI="${it.defaultInstanceURI}/"/>\n"""
+	}
+
+	result += "</org.palladiosimulator.architecturaltemplates:Catalog>\n"
+
+
+	catalogFileName = "${catalog}.architecturaltemplates"
+	def catalogFile = new File("${catalog_target}/${catalogFileName}")
+	catalogFile.write result
+
+	pluginXmlEntries.add("platform:/plugin/org.palladiosimulator.examples.package/${catalogFileName}#${catalog}.ID")
 }
 
-result += """</org.palladiosimulator.architecturaltemplates:Catalog>\n"""
+
+// build plugin.xml
+
+pluginXmlContent = """<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+"""
+pluginXmlEntries.each {
+	pluginXmlContent += """\t<extension point="org.palladiosimulator.architecturaltemplates.catalogs">\n\t\t<ATCatalog catalogURI="${it}"></ATCatalog>\n\t</extension>\n"""
+}
+pluginXmlContent += "\n</plugin>\n"
 
 
-def catalogue = new File(catalogue_target)
-catalogue.write result
+pluginXmlFile = new File("${catalog_target}/plugin.xml")
+pluginXmlFile.write pluginXmlContent

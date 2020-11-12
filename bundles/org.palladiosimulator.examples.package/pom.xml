@@ -123,12 +123,12 @@
 						<property>
 							<name>examples_sources</name>
 							<value>
-								${project.basedir}/target/examples/SVN-CaseStudies-MediaStore3
-								${project.basedir}/target/examples/SVN-SimuLizar-Examples
-								${project.basedir}/target/examples/Palladio-Example-Models-master
-								${project.basedir}/target/examples/Palladio-Analyzer-SimuLizar-master/bundles/ExampleModels
-								${project.basedir}/target/examples/Palladio-Addon-ArchitecturalTemplates-master/bundles/org.palladiosimulator.architecturaltemplates.catalog/initiatorTemplates
-								${project.basedir}/target/examples/Palladio-Addon-ArchitecturalTemplates-master/misc
+								MediaStore3::${project.basedir}/target/examples/SVN-CaseStudies-MediaStore3
+								SimuLizar-Examples::${project.basedir}/target/examples/SVN-SimuLizar-Examples
+								Palladio-Example-Models::${project.basedir}/target/examples/Palladio-Example-Models-master
+								Palladio-Analyzer-SimuLizar::${project.basedir}/target/examples/Palladio-Analyzer-SimuLizar-master/bundles/ExampleModels
+								org.palladiosimulator.architecturaltemplates.catalog::${project.basedir}/target/examples/Palladio-Addon-ArchitecturalTemplates-master/bundles/org.palladiosimulator.architecturaltemplates.catalog/initiatorTemplates
+								Palladio-Addon-ArchitecturalTemplates::${project.basedir}/target/examples/Palladio-Addon-ArchitecturalTemplates-master/misc
 							</value>
 						</property>
 						<property>
@@ -136,8 +136,8 @@
 							<value>${project.basedir}/initiatorTemplates</value>
 						</property>
 						<property>
-							<name>catalogue_target</name>
-							<value>${project.basedir}/Examples.architecturaltemplates</value>
+							<name>catalog_target</name>
+							<value>${project.basedir}/</value>
 						</property>
 					</properties>
 					<scripts>
