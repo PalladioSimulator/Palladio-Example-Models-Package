@@ -32,17 +32,6 @@
 							<connectionUrl>scm:svn:https://svnserver.informatik.kit.edu/i43/svn/code/CaseStudies/MediaStore3/trunk/Model</connectionUrl>
 						</configuration>
 					</execution>
-					<execution>
-						<id>download-svn-simulizar-examples</id>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>export</goal>
-						</goals>
-						<configuration>
-							<exportDirectory>${project.basedir}/target/examples/SVN-SimuLizar-Examples</exportDirectory>
-							<connectionUrl>scm:svn:https://svnserver.informatik.kit.edu/i43/svn/code/trunk/Palladio/Incubation/SimuLizar/trunk/ExampleModels/</connectionUrl>
-						</configuration>
-					</execution>
 				</executions>
 				
 				<configuration>
@@ -120,14 +109,17 @@
 						</source>
 					</sources>
 					<properties>
+						<!--
+							We could also add
+								org.palladiosimulator.architecturaltemplates.catalog::${project.basedir}/target/examples/Palladio-Addon-ArchitecturalTemplates-master/bundles/org.palladiosimulator.architecturaltemplates.catalog/initiatorTemplates
+							but the templates there do not contain .project files.
+						-->
 						<property>
 							<name>examples_sources</name>
 							<value>
 								MediaStore3::${project.basedir}/target/examples/SVN-CaseStudies-MediaStore3
-								SimuLizar-Examples::${project.basedir}/target/examples/SVN-SimuLizar-Examples
 								Palladio-Example-Models::${project.basedir}/target/examples/Palladio-Example-Models-master
 								Palladio-Analyzer-SimuLizar::${project.basedir}/target/examples/Palladio-Analyzer-SimuLizar-master/bundles/ExampleModels
-								org.palladiosimulator.architecturaltemplates.catalog::${project.basedir}/target/examples/Palladio-Addon-ArchitecturalTemplates-master/bundles/org.palladiosimulator.architecturaltemplates.catalog/initiatorTemplates
 								Palladio-Addon-ArchitecturalTemplates::${project.basedir}/target/examples/Palladio-Addon-ArchitecturalTemplates-master/misc
 							</value>
 						</property>
