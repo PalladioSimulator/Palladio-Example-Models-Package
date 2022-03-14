@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Examples - New Project Catalog Tests
+Bundle-SymbolicName: org.palladiosimulator.examples.package.test;singleton:=true
+Bundle-Version: 5.1.0.qualifier
+Bundle-Vendor: palladiosimulator.org
+Automatic-Module-Name: org.palladiosimulator.examples.package.test
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Require-Bundle: org.palladiosimulator.pcm,
+ org.palladiosimulator.pcm.resources,
+ org.palladiosimulator.commons.stoex,
+ org.apache.log4j,
+ de.uka.ipd.sdq.stoex.analyser,
+ org.modelversioning.emfprofile,
+ org.palladiosimulator.pcm.edp2.measuringpoint,
+ org.palladiosimulator.monitorrepository,
+ org.palladiosimulator.experimentautomation,
+ org.palladiosimulator.experimentautomation.application.tooladapter.simulizar.model,
+ org.palladiosimulator.architecturaltemplates.catalog,
+ tools.mdsd.library.standalone.initialization,
+ tools.mdsd.library.standalone.initialization.emfprofiles,
+ org.eclipse.gmf.runtime.notation,
+ org.palladiosimulator.commons,
+ org.palladiosimulator.metricspec,
+ org.junit,
+ org.junit.jupiter.api,
+ org.junit.jupiter.params
