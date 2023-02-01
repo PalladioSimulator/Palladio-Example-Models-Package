@@ -5,5 +5,5 @@ Bundle-SymbolicName: org.palladiosimulator.examples.package;singleton:=true
 Bundle-Version: 5.1.0.qualifier
 Bundle-Vendor: palladiosimulator.org
 Require-Bundle: org.palladiosimulator.architecturaltemplates;resolution:=optional
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-ActivationPolicy: lazy
