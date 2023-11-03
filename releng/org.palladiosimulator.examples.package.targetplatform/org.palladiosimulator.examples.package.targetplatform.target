@@ -26,7 +26,7 @@
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit" filter="nightly">
 			<unit id="org.palladiosimulator.architecturaltemplates" version="0.0.0"/>
-			<repository location="https://updatesite.palladio-simulator.com/palladio-addon-architecturaltemplates/nightly/"/>
+			<repository location="https://updatesite.palladio-simulator.com/palladio-addon-architecturaltemplates/branches/testingDay5.2.0/"/>
 		</location>
 
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit" filter="release">
