@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Examples - New Project Catalog
 Bundle-SymbolicName: org.palladiosimulator.examples.package;singleton:=true
-Bundle-Version: 5.2.2
+Bundle-Version: 6.0.0.qualifier
 Bundle-Vendor: palladiosimulator.org
 Require-Bundle: org.palladiosimulator.architecturaltemplates;resolution:=optional
 Bundle-RequiredExecutionEnvironment: JavaSE-17
