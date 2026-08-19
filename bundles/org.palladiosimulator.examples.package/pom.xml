@@ -89,7 +89,7 @@
 			<plugin>
 				<groupId>org.codehaus.gmavenplus</groupId>
 				<artifactId>gmavenplus-plugin</artifactId>
-				<version>1.13.1</version>
+				<version>4.2.0</version>
 				<executions>
 					<execution>
 						<phase>generate-resources</phase>
@@ -138,9 +138,9 @@
 				</configuration>
 				<dependencies>
 					<dependency>
-						<groupId>org.codehaus.groovy</groupId>
+						<groupId>org.apache.groovy</groupId>
 						<artifactId>groovy-all</artifactId>
-						<version>3.0.9</version>
+						<version>4.0.32</version>
 						<type>pom</type>
 						<scope>runtime</scope>
 					</dependency>
@@ -170,9 +170,9 @@
 	
 	<dependencies>
 		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
+			<groupId>org.apache.groovy</groupId>
 			<artifactId>groovy-all</artifactId>
-			<version>3.0.9</version>
+			<version>4.0.32</version>
 			<type>pom</type>
 			<scope>compile</scope>
 		</dependency>
