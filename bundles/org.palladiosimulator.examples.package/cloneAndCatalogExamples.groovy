@@ -1,4 +1,4 @@
-import groovy.util.XmlSlurper
+import groovy.xml.XmlSlurper
 import org.apache.commons.io.FileUtils
 
 /*
